@@ -1,0 +1,40 @@
+{//con filtro        
+                    echo '<tr><th>'.$resultado->order_id.'</th></td><td>'. $product_name . ' ID ' .$product_id . ' IDV ' . $variation_id . '</td><td> '.$quantity.'</td>';
+                    $contadorTotal = $contadorTotal+$quantity;           
+                    foreach ($item_data as $primo){
+                        $contador2++;                            
+                        if($contador2 == 13){
+                            //var_dump($primo);
+                            foreach($primo as $pri){                                  
+                                $findme   = 'Cocido';
+                                $findme2 = 'Crudo';
+                                $piezas = 'piezas';
+                                $pos = strpos($pri->value, $findme);//cocidos
+                                $pos2 = strpos($pri->value, $findme2);//crudo
+                                $piezas = strpos($pri->value, $piezas);
+                                                             
+                                if($pos === false){    
+                                    if($pri->value == 'M' || $pri->value == 'XL' || $pri->value == '100 piezas' || $pri->value == '14-16 piezas' || $pri->value == 'Cigala Tronco 8-10 piezas' || $pri->value == 'Cigala Tronco 8-10 piezas' || $pri->value == '80-90 piezas' || $pri->value == '40-60 piezas' || $pri->value == '20-30 piezas' || $pri->value == 'Cigala Grillo 30-35 piezas' || $pri->value == '9-11 piezas' || $pri->value == 'Cigala Mediana 14-16 piezas' || $pri->value == '60-70 piezas' )
+                                    {
+
+                                    }else{
+                                        $contadorCrudos = $contadorCrudos+$quantity;
+                                        echo '<td bgcolor="#cce5ff">'.$pri->key->value.'</td></tr>';
+                                    }                                
+                                }
+                                if($pos2 === false){
+                                    if($pri->value == 'M' || $pri->value == 'XL' || $pri->value == '100 piezas' || $pri->value == '14-16 piezas' || $pri->value == 'Cigala Tronco 8-10 piezas' || $pri->value == 'Cigala Tronco 8-10 piezas' || $pri->value == '80-90 piezas' || $pri->value == '40-60 piezas' || $pri->value == '20-30 piezas' || $pri->value == 'Cigala Grillo 30-35 piezas' || $pri->value == '9-11 piezas' || $pri->value == 'Cigala Mediana 14-16 piezas' || $pri->value == '60-70 piezas'  ) 
+                                    {
+
+                                    }else{
+                                        $contadorCocidos = $contadorCocidos+$quantity;
+                                        echo "<td>".$pri->value."</td></tr>";
+                                    }
+                                }                                 
+                            }
+                            //var_dump($primo);echo 'PRIMERO'.'<br>';
+                            //var_dump($primo);
+                            //var_dump($primo->key['key']);echo 'TERCERO'.'<br>'; 
+                        }                       
+                    }
+                }
